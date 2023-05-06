@@ -1,3 +1,15 @@
+/*
+ Autores:
+ Sarahy Gisselle Caicedo Betancourth
+ Kevin Andres Giron Villegas
+ <sarahy.caicedo@correounivalle.edu.co>
+ <kevin.giron@correounivalle.edu.co>
+ Fecha creación: 2023-05-01
+ Fecha última modificación: 2023-05-06
+*/
+/*
+ INTENCION: Esta clase tiene como porposito capturaar el evento principal al momento de lanzar los dados.
+ */
 package vista;
 
 
@@ -15,7 +27,7 @@ public class GUI extends JFrame {
     private ImagenDado dados;
     private JFrame frame;
     private JPanel fondo, opciones;
-    private Title titulo;
+    private Titulo titulo;
     private Listener listener;
     private JButton btnLanzarDado;
     private int conteo = 1;
@@ -25,7 +37,7 @@ public class GUI extends JFrame {
     public GUI() {
 
         listener = new Listener();
-        titulo = new Title();
+        titulo = new Titulo();
         frame = new JFrame();
         frame.setLayout(new BorderLayout());
         opciones = new JPanel(new GridLayout(2, 2));

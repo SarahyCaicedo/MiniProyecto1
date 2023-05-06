@@ -1,3 +1,16 @@
+/*
+ Autores:
+ Sarahy Gisselle Caicedo Betancourth
+ Kevin Andres Giron Villegas
+ <sarahy.caicedo@correounivalle.edu.co>
+ <kevin.giron@correounivalle.edu.co>
+ Fecha creación: 2023-05-01
+ Fecha última modificación: 2023-05-06
+*/
+/*
+ INTENCION: Esta clase utiliza un metodo que en la programación de interfaces
+ gráficas en Java se usa para dibujar y redibujar elementos en un componente de la GUI, como un JPanel o un JLabel.
+ */
 package vista;
 
 import com.sun.source.tree.ReturnTree;
