@@ -1,3 +1,15 @@
+/*
+ Autores:
+ Sarahy Gisselle Caicedo Betancourth
+ Kevin Andres Giron Villegas
+ <sarahy.caicedo@correounivalle.edu.co>
+ <kevin.giron@correounivalle.edu.co>
+ Fecha creación: 2023-05-01
+ Fecha última modificación: 2023-05-06
+*/
+/*
+ INTENCION: Esta clase tiene como porposito crear los dados y escuchar los eventos.
+ */
 package vista;
 
 import controlador.ControlDado;
@@ -7,11 +19,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class ImagenDado {
     private JButton[] dadito;
-    private Title titulo;
+    private Titulo titulo;
     private String texto;
     private JPanel dadosActivos, dadosInactivos, dadosUtilizados, tablaPuntaje;
     private JButton botonPresionado;
@@ -22,7 +33,7 @@ public class ImagenDado {
     public ImagenDado() {
         dadito = new JButton[10];
         listener = new Listener();
-        titulo = new Title();
+        titulo = new Titulo();
         dadosActivos = new JPanel(new GridLayout(3, 3, 10, 10));
         dadosActivos.setOpaque(false);
         dadosInactivos = new JPanel();
