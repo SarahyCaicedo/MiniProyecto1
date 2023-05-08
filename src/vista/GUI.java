@@ -18,9 +18,7 @@ import modelo.Dado;
 import controlador.ControlDado;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 
 
 public class GUI extends JFrame {
@@ -29,7 +27,7 @@ public class GUI extends JFrame {
     private final JPanel fondo, opciones;
     private final Titulo titulo;
     private final Listener listener;
-    private JButton btnLanzarDado;
+    private JButton btnLanzarDado, botonAyudaMemoria;
     private int conteo = 1;
 
 
@@ -68,14 +66,20 @@ public class GUI extends JFrame {
 
     private void initGUI() {
         btnLanzarDado = new JButton("Lanzar Dado");
-        JPanel panelBotones = new JPanel();
+        btnLanzarDado.setPreferredSize(new Dimension(80,80));
+
+        JPanel panelBotones = new JPanel(new GridLayout(2,1,520,520));
+        panelBotones.setOpaque(false);
         panelBotones.setPreferredSize(new Dimension(200, 650));
         panelBotones.add(btnLanzarDado, BorderLayout.CENTER);
         panelBotones.setOpaque(false);
         String texto = "Opciones";
         panelBotones.setBorder(titulo.gettitulo(texto));
+
+
         frame.getContentPane().add(panelBotones, BorderLayout.EAST);
         btnLanzarDado.addActionListener(listener);
+
 
 
     }
@@ -95,6 +99,7 @@ public class GUI extends JFrame {
 
 
     public class Listener implements ActionListener {
+        private ImageIcon image;
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -117,12 +122,27 @@ public class GUI extends JFrame {
 
             }
 
-
         }
 
     }
+   /* public class escucha implements ActionListener {
+        private ImageIcon image;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == botonAyudaMemoria){
+                System.out.println("ingreso al if del escucha");
+                imageLabel.setIcon(null);
+                this.image= new ImageIcon(getClass().getResource("/recursos/ayudamemoria.JPG"));
+                imageLabel.setIcon(image);
+            }
+        }
 
 
+    }*/
 }
+
+
+
 
 
