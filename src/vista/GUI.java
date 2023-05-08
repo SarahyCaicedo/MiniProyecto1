@@ -24,11 +24,11 @@ import java.awt.event.ActionListener;
 
 
 public class GUI extends JFrame {
-    private ImagenDado dados;
-    private JFrame frame;
-    private JPanel fondo, opciones;
-    private Titulo titulo;
-    private Listener listener;
+    private final ImagenDado dados;
+    public static JFrame frame;
+    private final JPanel fondo, opciones;
+    private final Titulo titulo;
+    private final Listener listener;
     private JButton btnLanzarDado;
     private int conteo = 1;
 
@@ -110,7 +110,7 @@ public class GUI extends JFrame {
                 conteo++;
                 dados.mostrarBotones();
 
-                if (controlRonda.rondas(conteo) == true) {
+                if ( controlRonda.rondas(conteo) == true) {
                     btnLanzarDado.setEnabled(false);
                 }
 
