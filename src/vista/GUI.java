@@ -5,11 +5,9 @@
  <sarahy.caicedo@correounivalle.edu.co>
  <kevin.giron@correounivalle.edu.co>
  Fecha creación: 2023-05-01
- Fecha última modificación: 2023-05-06
+ Fecha última modificación: 2023-05-09
 */
-/*
- INTENCION: Esta clase tiene como porposito capturaar el evento principal al momento de lanzar los dados.
- */
+
 package vista;
 
 
@@ -25,6 +23,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*
+* INTENCION: Esta clase tiene como porposito capturaar el evento principal
+* al momento de lanzar los dados.
+*/
 
 public class GUI extends JFrame {
     private static ImagenDado dados;
@@ -36,6 +38,14 @@ public class GUI extends JFrame {
     private int conteo = 1, dado;
 
     private ControlDado controlDado;
+
+    /*
+    * Contructor de GUI class, se inicializan varios objetos, como el listener, el título, el frame , el fondo
+    * y los dados. Luego se agregan los componentes al panel de opciones,  que se establece como el contenido
+    * principal del frame. Finalmente, se establecen algunas propiedades del frame, como su ícono, su tamaño y
+    * su ubicación en la pantalla. Se muestra el frame y se establece el comportamiento  de cierre cuando se
+    * presiona el botón de cierre.
+    */
 
     public GUI() {
 
@@ -68,6 +78,9 @@ public class GUI extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /*
+    *  Mostrar un mensaje de confirmacion de que ha perdido debido a que como ultimo dado le quedo el dragon.
+    */
 
     public static void dragon(int dra) {
         btnLanzarDado.setEnabled(true);
@@ -77,6 +90,11 @@ public class GUI extends JFrame {
 
     }
 
+    /*
+    * Crea una instancia de la clase Ayuda, en donde muestra el dado que se crea en esa clase
+    * como tambien crea dos dados, LanzarDado y ValidarDados. Agregandolos a un panel de botones
+    * llamado panelBotones que se define como un diseño FlowLayout.
+    */
 
     private static void initGUI() {
         Ayuda ayuda=new Ayuda();
@@ -97,6 +115,11 @@ public class GUI extends JFrame {
 
     }
 
+    /*
+    *   Crea una instancia de un objeto ImagenDado, restableciendo y actualizando la
+    *   GUI del juego, reiniciando el juego o una nueva ronda.
+    */
+
     private static void reiniciar(){
         dados = new ImagenDado();
         opciones.add(dados.getDadosActivos());
@@ -105,6 +128,9 @@ public class GUI extends JFrame {
         opciones.add(dados.getDadosUtilizados());
     }
 
+    /*
+    * Este metodo es el principal y muestra la ventana de la aplicacion.
+    */
 
     public static void main(String[] arg) {
 
@@ -119,6 +145,14 @@ public class GUI extends JFrame {
         });
     }
 
+    /*
+    * Esta clase captura el evento y se activa cada vez que se produce una accion (clic)
+    * comprobando que se haya hecho clic en el boton LanzarDado y boton Validar. Si el boton es el de LanzarDado,
+    * Se crea una instancia de la clase ImagenDado, comprobando en que ronda se encuentra el juego
+    * (utilizando la clase ControlRonda) lanzando un dado, actualizando la interfaz grafica e incrementando
+    * la variable conteo. Por otro lado, si es el boton Validar, se crea una instancia de la clase ImagenDAdo y se recorren
+    * todos los componentes obteneiendo las etiquetas de de todos los botones y se imporimen en consola.
+    */
 
     public class Listener implements ActionListener {
 
