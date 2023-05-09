@@ -21,6 +21,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class GUI extends JFrame {
@@ -89,6 +92,7 @@ public class GUI extends JFrame {
         panelBotones.setBorder(titulo.gettitulo(texto));
         frame.getContentPane().add(panelBotones, BorderLayout.EAST);
         btnLanzarDado.addActionListener(listener);
+        btnValidar.addActionListener(listener);
 
 
     }
@@ -122,10 +126,11 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
             if (e.getSource() == btnLanzarDado) {
-
+                ImagenDado imagenDado= new ImagenDado();
                 String texto2 = "Ronda#" + conteo;
                 ControlRonda controlRonda = new ControlRonda();
                 controlRonda.rondas(conteo);
+                imagenDado.actualizar();
 
                 System.out.println("Entro en la primera ronda" + conteo);
 
@@ -135,25 +140,70 @@ public class GUI extends JFrame {
                     controlDado.LanzarDado();
                     opciones.setBorder(titulo.gettitulo(texto2));
                     dados.mostrarBotones();
-                    System.out.println("Entro en la primera ronda "+conteo);
-                    conteo++;
-                    System.out.println("Entro en la primera ronda "+conteo);
-                    btnLanzarDado.setEnabled(false);
+                    System.out.println("Entro a la ronda "+conteo);
+                    btnLanzarDado.setEnabled(true);
                 }
-                if ( controlRonda.rondas(conteo) == 2 && btnValidar==e.getSource()) {
-                    btnLanzarDado.setEnabled(false);
+                if ( controlRonda.rondas(conteo) == 2) {
+                    opciones.removeAll();
+                    reiniciar();
+                    Dado dado = new Dado();
+                    ControlDado controlDado = new ControlDado(dado, dados);
+                    controlDado.LanzarDado();
+                    opciones.setBorder(titulo.gettitulo(texto2));
+                    dados.mostrarBotones();
+                    System.out.println("Entro a la ronda "+conteo);
+                    btnLanzarDado.setEnabled(true);
                 }
                 if ( controlRonda.rondas(conteo) == 3) {
-                    btnLanzarDado.setEnabled(false);
+                    opciones.removeAll();
+                    reiniciar();
+                    Dado dado = new Dado();
+                    ControlDado controlDado = new ControlDado(dado, dados);
+                    controlDado.LanzarDado();
+                    opciones.setBorder(titulo.gettitulo(texto2));
+                    dados.mostrarBotones();
+                    System.out.println("Entro a la ronda "+conteo);
+                    btnLanzarDado.setEnabled(true);
                 }
                 if ( controlRonda.rondas(conteo) == 4) {
-                    btnLanzarDado.setEnabled(false);
+                    opciones.removeAll();
+                    reiniciar();
+                    Dado dado = new Dado();
+                    ControlDado controlDado = new ControlDado(dado, dados);
+                    controlDado.LanzarDado();
+                    opciones.setBorder(titulo.gettitulo(texto2));
+                    dados.mostrarBotones();
+                    System.out.println("Entro a la ronda "+conteo);
+                    btnLanzarDado.setEnabled(true);
                 }
                 if ( controlRonda.rondas(conteo) == 5) {
-                    btnLanzarDado.setEnabled(false);
+                    opciones.removeAll();
+                    reiniciar();
+                    Dado dado = new Dado();
+                    ControlDado controlDado = new ControlDado(dado, dados);
+                    controlDado.LanzarDado();
+                    opciones.setBorder(titulo.gettitulo(texto2));
+                    dados.mostrarBotones();
+                    System.out.println("Entro a la ronda "+conteo);
+                    btnLanzarDado.setEnabled(true);
                 }
+                frame.revalidate();
+                frame.repaint();
+                conteo++;
 
-
+            }
+            if(e.getSource()==btnValidar){
+                ImagenDado imagenDado= new ImagenDado();
+                ArrayList<String> etiquetas = new ArrayList<>();
+                for (Component component : imagenDado.components) {
+                    if (component instanceof JButton) {
+                        JButton boton = (JButton) component;
+                        String etiqueta = boton.getActionCommand();
+                        etiquetas.add(etiqueta);
+                    }
+                }
+                String[] etiquetasArray = etiquetas.toArray(new String[0]);
+                System.out.println(Arrays.toString(etiquetasArray));
             }
 
 
