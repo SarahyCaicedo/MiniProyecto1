@@ -31,8 +31,9 @@ public class Ayuda extends JFrame {
 
         add(contenedorBoton, BorderLayout.SOUTH);
         getContentPane().add(contenedorImagen, BorderLayout.CENTER);
-
-
+        int x = 400;
+        int y = 150;
+        setLocation(x,y);
         setIconImage(new ImageIcon(getClass().getResource("/recursos/Logo.png")).getImage());
         pack();
 
@@ -48,9 +49,11 @@ public class Ayuda extends JFrame {
 
                 System.out.println("Evento capturado");
                 imagenLabel.setIcon(null);
-                imagen = new ImageIcon(getClass().getResource("/recursos/ayudamemoria.JPG"));
-                imagenLabel.setIcon(imagen);
-                setSize(760,565);
+                ImageIcon imagen = new ImageIcon(getClass().getResource("/recursos/ayuda.png"));
+                Image imageEscala = imagen.getImage().getScaledInstance(480, 420, Image.SCALE_SMOOTH);
+                ImageIcon imagenFinal = new ImageIcon(imageEscala);
+                imagenLabel.setIcon(imagenFinal);
+                setSize(500,470);
                 setVisible(true);
 
             }

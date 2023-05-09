@@ -32,12 +32,12 @@ public class Titulo extends JLabel {
         border = BorderFactory.createCompoundBorder(
                 new LineBorder(Color.GRAY, 2),
                 new TitledBorder(
-                        new LineBorder(Color.BLUE, 4),
+                        new LineBorder(Color.blue, 4),
                         text,
                         TitledBorder.CENTER,
                         TitledBorder.DEFAULT_POSITION,
                         font,
-                        Color.BLUE
+                        Color.decode("#b0bbc2")
                 )
         );
 

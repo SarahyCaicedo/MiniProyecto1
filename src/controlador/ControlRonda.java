@@ -27,14 +27,14 @@ public class ControlRonda  {
         if(num.estadoFinal(cantidad, numero)){
             if(num.getNum()==1){
                 System.out.println("Verdadero para suma " + num.getNum());
-            }else{
+            }
+            if(num.getNum()==2){
                 GUI.dragon(num.getNum());
                 System.out.println("Estamos aqui verdadero para dragon " + num.getNum());
+            }else{
+                System.out.println("Llego hasta aqui: "+ cantidad);
+                num.estadoFinal(cantidad, numero);
             }
-
-        }else{
-            System.out.println("Llego hasta aqui: "+ cantidad);
-            num.estadoFinal(cantidad, numero);
         }
 
     }
