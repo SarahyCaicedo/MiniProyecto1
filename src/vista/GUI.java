@@ -67,10 +67,12 @@ public class GUI extends JFrame {
 
 
     private void initGUI() {
+        Ayuda ayuda=new Ayuda();
         btnLanzarDado = new JButton("Lanzar Dado");
         JPanel panelBotones = new JPanel();
         panelBotones.setPreferredSize(new Dimension(200, 650));
         panelBotones.add(btnLanzarDado, BorderLayout.CENTER);
+        panelBotones.add(ayuda.botonAyuda, BorderLayout.SOUTH);
         panelBotones.setOpaque(false);
         String texto = "Opciones";
         panelBotones.setBorder(titulo.gettitulo(texto));
