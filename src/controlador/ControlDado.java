@@ -47,17 +47,13 @@ public class ControlDado {
         if (dado == 1) {
             dados = 1;
             nuevo = modeloDado.caraSuma(dado);
-            ImagenDado.exitoso = true;
             imagenDado.mensaje(dado);
-
             System.out.println("Dado suma: " + nuevo);
         }
         if (dado == 2) {
             dados = 2;
             nuevo = modeloDado.corazon(dado);
-            ImagenDado.exitoso = true;
             imagenDado.mensaje(dado);
-
             System.out.println("Dado perdedor: " + nuevo);
         }
 
