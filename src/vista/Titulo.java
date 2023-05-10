@@ -7,9 +7,7 @@
  Fecha creación: 2023-05-01
  Fecha última modificación: 2023-05-06
 */
-/*
- INTENCION: Esta clase tiene como proposito agregar el titulo de los  JPanel a traves de atributo Border.
- */
+
 package vista;
 
 import javax.swing.*;
@@ -18,14 +16,25 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
+/*
+* INTENCION: Esta clase tiene como proposito agregar el titulo de los  JPanel a traves de atributo Border.
+*/
+
 public class Titulo extends JLabel {
 
     private Border border;
 
+    /*
+    * Constructor de la clase
+    */
+
     public Titulo() {
 
-
     }
+
+    /*
+    * Crea y devuelve un borde con un titulo centrado y un texto especifico
+    */
 
     public Border gettitulo(String text){
         Font font = new Font("Arial", Font.BOLD, 24);

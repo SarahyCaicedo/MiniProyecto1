@@ -7,9 +7,7 @@
  Fecha creación: 2023-05-01
  Fecha última modificación: 2023-05-06
 */
-/*
- INTENCION: Esta clase tiene como porposito crear los dados y escuchar los eventos.
- */
+
 package vista;
 
 import controlador.ControlDado;
@@ -24,6 +22,13 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
+/*
+ INTENCION: Esta clase tiene como porposito crear los dados y escuchar los eventos.
+ */
+
+
 public class ImagenDado {
     private ControlDado controlito;
     private Titulo titulo;
@@ -34,11 +39,22 @@ public class ImagenDado {
     public static JButton botonPresionado;
     public static Component[] components;
     private Listener listener;
-
     public static String[] etiquetasArray;
     private static String[] numero = new String[]{"", "", "1", "3", "6", "10", "15", "21", "28", "36", "45", "55"};
-    private int botonPresionadoSinPoder, totalact;
+    private int botonPresionadoSinPoder;
     public static int respuesta,dadosEnelPanel, dadosEnelpanelIna, dadosEnelPanelUti;
+
+    private Fondo fondo;
+
+    /*
+    * Constructor de la clase, este crea un array de 10 botones llamado dadito
+    * y los divide en dos paneles, dadosActivos y dadosInactivos. Los primeros
+    * 7 botones se agregan al panel dadosActivos, los otros 3 a los dadosInactivos.
+    * Tambien se establecen algunas propiedadesde los botones, como el tamaño, visibilidad
+    * y estado habilitado/deshabilitado.
+    */
+
+
     public ImagenDado() {
         dadito = new JButton[10];
         listener = new Listener();
@@ -73,6 +89,13 @@ public class ImagenDado {
 
         }
     }
+
+    /*
+    * Hace que los botones de una arrelo de botones se vuelvan visibes
+    * en la pantalla. El while itera a traves del arreglo de botones y
+    * establece la visibilidad de cada boton en true.
+    */
+
     public boolean mostrarBotones() {
         int i = 0;
         while (i < 10) {
@@ -81,6 +104,15 @@ public class ImagenDado {
         }
         return true;
     }
+
+    /*
+    * Muestra una imagen de un dado en un boton en un arreglo de botones,
+    * recibe como parametros el valor del dado (un numero entre 1 y 6) y
+    * el indice del boton. Luego, carga la imagen correspndiente a la cara
+    * en un imageIcon, estableciendo el valor del dado como el comando de
+    * accion del boton mostrandolo en consola.
+    */
+
     public void imagenDelDado(int dados, int indice) {
         ImageIcon imagen = new ImageIcon(getClass().getResource("/recursos/Cara-" + dados + ".png"));
         Image imageEscala = imagen.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
@@ -90,10 +122,21 @@ public class ImagenDado {
         dadito[indice].setActionCommand(texto);
         System.out.println("Entra a la función y colocan la imagen " + dadito[indice].getActionCommand() + "este es el indice" + indice);
     }
+
+    /*
+    * Retorna los dadosActivos
+    */
+
     public JPanel getDadosActivos() {
         return dadosActivos;
-
     }
+
+    /*
+    * Establece el diseño de cuadrícula, agrega los componentes al panel y
+    * devuelve el panel. También establece la opacidad del panel en falso
+    * para que el fondo del panel debajo de él sea visible.
+    */
+
     public JPanel getDadosUtilizados() {
         dadosUtilizados = new JPanel(new GridLayout(3, 3, 10, 10));
         texto = "Dados Utilizados";
@@ -101,6 +144,13 @@ public class ImagenDado {
         dadosUtilizados.setOpaque(false);
         return dadosUtilizados;
     }
+
+    /*
+    * Devuelve un JPanel que representa una tabla de puntajes. La tabla tiene 3 filas y 4 columnas,
+    * y cada celda es un botón que contiene un número del 0 al 9 y dos botones adicionales que están ocultos.
+    * La imagen del fondo se carga desde un archivo de recursos en la carpeta «recursos» del proyecto.
+    */
+
     public JPanel getTablaPuntaje() {
         tablaPuntaje = new JPanel();
         tablaPuntaje = new Fondo(new ImageIcon(getClass().getResource("/recursos/FondoPuntaje.png")).getImage());
@@ -124,9 +174,20 @@ public class ImagenDado {
         puntaje[1].setVisible(false);
         return tablaPuntaje;
     }
+
+    /*
+    * Retorna los dadosInactivos
+    */
+
     public JPanel getDadsInactivation() {
         return dadosInactivos;
     }
+
+    /*
+    * Muestra un mensaje emergente, se utiliza un swicth-case para determinar
+    * que mensaje se debe mostrar.
+    */
+
     public void mensaje(int dado) {
 
         switch (dado) {
@@ -160,12 +221,26 @@ public class ImagenDado {
                 break;
         }
 
-
     }
-    public Component[] actualizar() {
+
+
+
+    /*
+    *  Devuelve un arreglo de los componenetes que estan dentro del panel
+    * dadosActivos y los imprime en la consola.
+    */
+    public Component[] actualizar(){
         Component[] componentes = dadosActivos.getComponents();
         return componentes;
     }
+
+    /*
+    * Maneja los eventos de boton y realiza una serie de acciones que incluyen
+    * la eliminacion de un boton presionado y su traslado a otra aera de la
+    * interfaz grafica, el metodo mouseClicked maneja los eventos de clics del mouse
+    * y realiza acciones adicionales en el boton presionado reubicandolo en la interfaz.
+    */
+
     public class Listener implements ActionListener, MouseListener {
         @Override
         public void actionPerformed(ActionEvent e) {

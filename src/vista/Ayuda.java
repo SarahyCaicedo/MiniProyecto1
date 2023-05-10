@@ -1,3 +1,13 @@
+/*
+ Autores:
+ Sarahy Gisselle Caicedo Betancourth
+ Kevin Andres Giron Villegas
+ <sarahy.caicedo@correounivalle.edu.co>
+ <kevin.giron@correounivalle.edu.co>
+ Fecha creación: 2023-05-07
+ Fecha última modificación: 2023-05-09
+*/
+
 package vista;
 
 import javax.swing.*;
@@ -5,11 +15,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+*INTENCION: Esta clase tiene como proposito definir una ventana de ayuda
+* que muestre una imagen al hacer clic en el boton.
+*/
+
 public class Ayuda extends JFrame {
     public static JButton botonAyuda;
     private JPanel contenedorBoton, contenedorImagen;
     private JLabel imagenLabel;
     private Listener listener;
+
+    /*
+    * Constructor de la clase, inicializa los atibutos, el boton Heelp es agregado
+    * al panel contenedorBoton y la etiqueta de la imagen se agrega al panel contenedorImagen.
+    * Tambien agrega un logo a la ventana con la imagen del juego Geek Out! Master.
+    */
 
     public Ayuda(){
 
@@ -39,13 +60,16 @@ public class Ayuda extends JFrame {
 
     }
 
+    /*
+    * Se encarga de manejar el evento de dar clic al boton Help, al dar clic, la imagen en la
+    * etiqueta se actualia con la imagen de ayuda y se ajusta el tamaño de la ventana.
+    */
 
     public class Listener implements ActionListener{
 
-        private ImageIcon imagen;
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource()== botonAyuda){
+            if(e.getSource() == botonAyuda){
 
                 System.out.println("Evento capturado");
                 imagenLabel.setIcon(null);

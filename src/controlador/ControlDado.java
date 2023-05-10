@@ -1,8 +1,20 @@
+/*
+ Autores:
+ Sarahy Gisselle Caicedo Betancourth
+ Kevin Andres Giron Villegas
+ <sarahy.caicedo@correounivalle.edu.co>
+ <kevin.giron@correounivalle.edu.co>
+ Fecha creación: 2023-05-05
+ Fecha última modificación: 2023-05-07
+*/
 package controlador;
 
 import modelo.Dado;
 import vista.ImagenDado;
 
+/*
+*INTENCION:Tiene como proposito controlar y manejar la logica de los dados
+*/
 
 public class ControlDado {
 
@@ -10,11 +22,15 @@ public class ControlDado {
     private ImagenDado imagenDado;
 
     public static int lanzamientos, indice, nuevo, dados, cantidad;
-
     public static boolean determinante = false;
     public static String[] caraPrincipal = new String[10];
 
     public static String[] caraOpuesta = new String[10];
+
+
+    /*
+    * Contructor de la clase
+    */
 
     public ControlDado(Dado modeloDado, ImagenDado imagenDado) {
 
@@ -23,12 +39,22 @@ public class ControlDado {
 
     }
 
+    /*
+     * Constructor de la clase, Crea objetos de la clase Dado e ImagenDado, como tambien de la clase
+     * ControlDado
+     */
+
     public ControlDado() {
         modeloDado = new Dado();
         imagenDado = new ImagenDado();
         this.nuevo = nuevo;
 
     }
+
+    /*
+    * Lanza el dado y almacena los resultados enlos arreglos caraPrincipal y
+    * caraOpuesta
+    */
 
     public void LanzarDado() {
         for (indice = 0; indice < 10; indice++) {
@@ -40,9 +66,18 @@ public class ControlDado {
         }
     }
 
+    /*
+    * Devuelve el arreglo caraPrincipal
+    */
+
     public String[] getCaraPrincipal() {
         return caraPrincipal;
     }
+
+    /*
+    * Determina el valor del lanzamiento actual y muestra la imagen correspondiente
+    * del dado en la interfaz.
+    */
 
     public void metodo(int dado) {
         if (dado == 1) {
@@ -96,6 +131,11 @@ public class ControlDado {
         }
 
     }
+
+    /*
+    * Se utiliza para determinar el estado actual del juego y llevar a cabo acciones
+    * cprrespondientes
+    */
 
     public int Estado(int cantidades) {
         ControlRonda controlRonda = new ControlRonda();
