@@ -14,70 +14,76 @@ import vista.GUI;
 import vista.ImagenDado;
 
 /*
-*INTENCION: Tiene como proposito controlar y manejar la logica del juego para
-*  determinar cuantas ondas se han jugado y validar si se ha llegado al final
-*/
+ *INTENCION: Tiene como proposito controlar y manejar la logica del juego para
+ *  determinar cuantas ondas se han jugado y validar si se ha llegado al final
+ */
 
-public class ControlRonda  {
-    private Ronda num;
-    private ImagenDado numero;
+public class ControlRonda {
+    public static Ronda num;
+    public static ImagenDado imagenDado;
 
-    public static int dado;
-    private GUI vista;
+    public static ControlDado controlDado;
+
 
     /*
-    * Constructor de la clase
-    */
+     * Constructor de la clase
+     */
 
-    public ControlRonda(){
+    public ControlRonda() {
     }
 
     /*
-    * Recibe como parametro el numero actual de la ronda y crea una instancia de la
-    * clase ronda para verificar si se ha alcanzado el limite de 5 rondas.
-    */
+     * Recibe como parametro el numero actual de la ronda y crea una instancia de la
+     * clase ronda para verificar si se ha alcanzado el limite de 5 rondas.
+     */
 
-    public int rondas(int ron){
+    public int rondas(int ron) {
         num = new Ronda(ron);
-        if(num.inhabilitar()<=5){
+        if (num.inhabilitar() <= 5) {
             return num.getNum();
-        }else{
+        } else {
             return num.getNum();
         }
     }
 
     /*
-    * Recibe la cantidad de caras en una ronda y el numero de dado correspondiente,
-    * crea una instancia de la clase Ronda y llama a la funcion estadoFinal, determinando
-    * si se ha llegado al final del juego.
-    */
+     * Recibe la cantidad de caras en una ronda y el numero de dado correspondiente,
+     * crea una instancia de la clase Ronda y llama a la funcion estadoFinal, determinando
+     * si se ha llegado al final del juego.
+     */
 
-    public void validacion(int cantidad, int numero){
+    public static void recorrer(String[] vigentes) {
         num = new Ronda();
-        if(num.estadoFinal(cantidad, numero)){
-            if(num.getNum()==1){
-                System.out.println("Verdadero para suma " + num.getNum());
+        imagenDado = new ImagenDado();
+        boolean todosIguales = true;
+        for (int i = 1; i < vigentes.length; i++) {
+            if (!vigentes[i].equals(vigentes[0])) {
+                todosIguales = false;
+                break;
             }
-            if(num.getNum()==2){
-                System.out.println("Estamos aqui verdadero para dragon " + num.getNum());
-            }
-            if(num.getNum()==3){
-                System.out.println("Estamos aqui verdadero para meeple " + num.getNum());
-            }
-            if(num.getNum()==4){
-                System.out.println("Estamos aqui verdadero para nave " + num.getNum());
-            }
-            if(num.getNum()==5){
-                System.out.println("Estamos aqui verdadero para corazon " + num.getNum());
-            }
-        }else if(!num.estadoFinal(cantidad, numero)){
-            System.out.println("Llego hasta aqui: "+ numero);
+        }
+        System.out.println("Dados" + controlDado.dados);
+
+        if (vigentes[0].equals("1") && todosIguales == true) {
+                GUI.mensajeRondas(Integer.parseInt(vigentes[0]));
+        } else if (vigentes[0].equals("2") && todosIguales == true) {
+            GUI.mensajeRondas(Integer.parseInt(vigentes[0]));
+                System.out.println("Pierdes todos los puntos.");
+        } else if (vigentes[0].equals("3") && todosIguales == true) {
+            GUI.mensajeRondas(Integer.parseInt(vigentes[0]));
+                System.out.println("No sumas.");
+        } else if (vigentes[0].equals("4") && todosIguales == true) {
+            GUI.mensajeRondas(Integer.parseInt(vigentes[0]));
+                System.out.println("No sumas.");
+        } else if (vigentes[0].equals("5") && todosIguales == true) {
+            GUI.mensajeRondas(Integer.parseInt(vigentes[0]));
+                System.out.println("No sumas.");
+        } else if(vigentes[0].equals("6") && todosIguales == true){
+            GUI.mensajeRondas(Integer.parseInt(vigentes[0]));
         }
 
+
     }
-
-
-
 
 
 }

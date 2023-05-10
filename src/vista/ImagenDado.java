@@ -42,7 +42,7 @@ public class ImagenDado {
     public static String[] etiquetasArray;
     private static String[] numero = new String[]{"", "", "1", "3", "6", "10", "15", "21", "28", "36", "45", "55"};
     private int botonPresionadoSinPoder;
-    public static int respuesta,dadosEnelPanel, dadosEnelpanelIna, dadosEnelPanelUti;
+    public static int respuesta,dadosEnelPanel, dadosEnelpanelIna, dadosEnelPanelUti, acumulador=1;
 
     private Fondo fondo;
 
@@ -289,6 +289,7 @@ public class ImagenDado {
                         for (int j = 0; j < dadito.length; j++) {
                             if (dadito[j] == e.getSource()) {
                                 dices = j;
+                                acumulador += 1;
                                 exitoso = false;
                                 break;
                             }
@@ -297,7 +298,8 @@ public class ImagenDado {
                             ImageIcon imagen = new ImageIcon(getClass().getResource("/recursos/Cara-" + botonPresionadoSinPoder + ".png"));
                             Image imageEscala = imagen.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                             ImageIcon imagenFinal = new ImageIcon(imageEscala);
-                            puntaje[2].setIcon(imagenFinal);
+                            puntaje[acumulador].setText("");
+                            puntaje[acumulador].setIcon(imagenFinal);
                             dadosActivos.remove(dadito[dices]);
                             dadosUtilizados.revalidate();
                             dadosInactivos.revalidate();
@@ -306,6 +308,7 @@ public class ImagenDado {
                             dadosInactivos.repaint();
                             dadosActivos.repaint();
                             components = actualizar();
+
                         }
                         System.out.println("Sale 42");
                     }
@@ -314,6 +317,7 @@ public class ImagenDado {
                     controlito.metodo(botonPresionadoSinPoder);
                     System.out.println("sale dragon");
                     components = actualizar();
+
                 }
                 if (exitoso == true && controlito.Estado(dadosEnelPanel) == 3) {
                     if (e.getClickCount() == 2 && botonPresionado.getParent() == dadosActivos) {
@@ -339,6 +343,7 @@ public class ImagenDado {
                             respuesta=JOptionPane.showConfirmDialog(null, "La cara cambio a : "
                                     + modeloDado.getCaras(caraNueva), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                             components = actualizar();
+
 
                         }
 
@@ -372,6 +377,7 @@ public class ImagenDado {
                                     "Se inactivo el dado: " + modeloDado.getCaras(Integer.parseInt(dado)),
                                     "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                             components = actualizar();
+
                         }
                         System.out.println("sale nave");
                     }
@@ -399,6 +405,7 @@ public class ImagenDado {
                             dadosActivos.repaint();
                             respuesta=JOptionPane.showConfirmDialog(null, "Cara opuesta del dado: " + modeloDado.getCaras(caraOpuesta), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                             components = actualizar();
+
                         }
                         System.out.println("sale heroe");
                     }
@@ -443,6 +450,7 @@ public class ImagenDado {
                             }
                         }
                         etiquetasArray = etiquetas.toArray(new String[0]);
+                        controlRonda.recorrer(etiquetasArray);
                         dadosEnelPanel = components.length;
                         System.out.println(Arrays.toString(etiquetasArray));
                     }catch (NullPointerException E){
