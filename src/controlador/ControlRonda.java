@@ -29,15 +29,24 @@ public class ControlRonda  {
                 System.out.println("Verdadero para suma " + num.getNum());
             }
             if(num.getNum()==2){
-                GUI.dragon(num.getNum());
                 System.out.println("Estamos aqui verdadero para dragon " + num.getNum());
-            }else{
-                System.out.println("Llego hasta aqui: "+ cantidad);
-                num.estadoFinal(cantidad, numero);
             }
+            if(num.getNum()==3){
+                System.out.println("Estamos aqui verdadero para meeple " + num.getNum());
+            }
+            if(num.getNum()==4){
+                System.out.println("Estamos aqui verdadero para nave " + num.getNum());
+            }
+            if(num.getNum()==5){
+                System.out.println("Estamos aqui verdadero para corazon " + num.getNum());
+            }
+        }else if(!num.estadoFinal(cantidad, numero)){
+            System.out.println("Llego hasta aqui: "+ numero);
         }
 
     }
+
+
 
 
 

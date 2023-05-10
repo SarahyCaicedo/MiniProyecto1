@@ -8,16 +8,15 @@ public class Dado {
     public Dado() {
 
     }
-
     public int lanzar() {
         return (int) (Math.random() * 6) + 1;
     }
-
-    public int caraOpuesta(int dado) {
-        int opuesto = 7 - dado;
-        return opuesto;
+    public int caraSuma(int dado) {
+        if (1 == dado) {
+            dado = dado+0;
+        }
+        return dado;
     }
-
     public boolean dragon(int dado) {
         if (2 == dado) {
             return true;
@@ -25,13 +24,6 @@ public class Dado {
         } else {
             return false;
         }
-    }
-
-    public int caraSuma(int dado) {
-        if (1 == dado) {
-            dado = 42;
-        }
-        return dado;
     }
 
     public int meeple(int dado) {
@@ -51,7 +43,6 @@ public class Dado {
         }
 
     }
-
     public int heroe(int dado) {
         if (5 == dado) {
             return dado;
@@ -59,6 +50,10 @@ public class Dado {
             return 0;
         }
 
+    }
+    public int caraOpuesta(int dado) {
+        int opuesto = 7 - dado;
+        return opuesto;
     }
 
     public int corazon(int dado) {

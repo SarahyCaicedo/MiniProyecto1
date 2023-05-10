@@ -13,8 +13,8 @@
 package vista;
 
 import controlador.ControlDado;
+import controlador.ControlRonda;
 import modelo.Dado;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,23 +22,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Arrays;
 
 public class ImagenDado {
-    public static boolean exitoso;
     private ControlDado controlito;
-    public JButton[] dadito, puntaje;
     private Titulo titulo;
+    public static boolean exitoso;
+    public JButton[] dadito, puntaje;
     private String texto;
-    private  JPanel dadosActivos, dadosInactivos, dadosUtilizados, tablaPuntaje;
+    private JPanel dadosActivos, dadosInactivos, dadosUtilizados, tablaPuntaje;
     public static JButton botonPresionado;
     public static Component[] components;
     private Listener listener;
+
+    public static String[] etiquetasArray;
     private static String[] numero = new String[]{"", "", "1", "3", "6", "10", "15", "21", "28", "36", "45", "55"};
-    private int respuesta, indice, caraInactiva, botonPresionadoSinPoder;
-    public static int dadosEnelPanel, dadosEnelpanelIna, dadosEnelPanelUti;
-    private Fondo fondo;
+    private int botonPresionadoSinPoder, totalact;
+    public static int respuesta,dadosEnelPanel, dadosEnelpanelIna, dadosEnelPanelUti;
     public ImagenDado() {
         dadito = new JButton[10];
         listener = new Listener();
@@ -131,28 +131,28 @@ public class ImagenDado {
 
         switch (dado) {
             case 1:
-                respuesta = JOptionPane.showConfirmDialog(null,
+                JOptionPane.showConfirmDialog(null,
                         "De clic en validar dados", "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                 break;
             case 2:
-                respuesta = JOptionPane.showConfirmDialog(null,
+                JOptionPane.showConfirmDialog(null,
                         "De clic en validar dados", "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                 break;
             case 3:
-                respuesta = JOptionPane.showConfirmDialog(null,
+                JOptionPane.showConfirmDialog(null,
                         "Por favor de doble clic sobre el dado que desea reelanzar", "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                 break;
             case 4:
-                respuesta = JOptionPane.showConfirmDialog(null,
+                JOptionPane.showConfirmDialog(null,
                         "Por favor de doble clic sobre el dado que desea inactivar", "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                 break;
             case 5:
-                respuesta = JOptionPane.showConfirmDialog(null
+                JOptionPane.showConfirmDialog(null
                         , "Por favor de doble clic sobre el dado que desea ver su cara opuesta", "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
 
                 break;
             case 6:
-                respuesta = JOptionPane.showConfirmDialog(null,
+                JOptionPane.showConfirmDialog(null,
                         "De doble clic sobre el dado de los dados\n" + "inactivos que desea activar", "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                 break;
             default:
@@ -162,23 +162,20 @@ public class ImagenDado {
 
 
     }
-    public Component[] actualizar(){
+    public Component[] actualizar() {
         Component[] componentes = dadosActivos.getComponents();
-        for (Component component : componentes) {
-            System.out.println("Tipo de componente: " + component.getClass().getSimpleName());
-        }
         return componentes;
     }
     public class Listener implements ActionListener, MouseListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             controlito = new ControlDado();
+            components = actualizar();
             botonPresionado = (JButton) e.getSource();
             dadosEnelPanel = dadosActivos.getComponentCount();
             dadosEnelPanelUti = dadosUtilizados.getComponentCount();
             dadosEnelpanelIna = dadosInactivos.getComponentCount();
-            components = actualizar();
+
             if (exitoso == false) {
                 for (int i = 0; i < controlito.getCaraPrincipal().length; i++) {
                     botonPresionadoSinPoder = Integer.parseInt(e.getActionCommand());
@@ -192,7 +189,6 @@ public class ImagenDado {
                         dadosInactivos.repaint();
                         dadosActivos.repaint();
                         controlito.metodo(Integer.parseInt(e.getActionCommand()));
-
                         break;
                     }
                 }
@@ -202,6 +198,7 @@ public class ImagenDado {
         @Override
         public void mouseClicked(MouseEvent e) {
             controlito = new ControlDado();
+            ControlRonda controlRonda = new ControlRonda();
             Dado modeloDado = new Dado();
             String dado = "";
             String opuesto = "";
@@ -211,50 +208,51 @@ public class ImagenDado {
             try {
                 if (botonPresionadoSinPoder == 1) {
                     controlito.metodo(botonPresionadoSinPoder);
-                    int dices = -1;
-                    for (int j = 0; j < dadito.length; j++) {
-                        if (dadito[j] == e.getSource()) {
-                            dices = j;
-                            exitoso = false;
-                            break;
-                        }
-                    }
-                    if (dices != -1 && exitoso == false) {
-                        ImageIcon imagen = new ImageIcon(getClass().getResource("/recursos/Cara-" + botonPresionadoSinPoder + ".png"));
-                        Image imageEscala = imagen.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                        ImageIcon imagenFinal = new ImageIcon(imageEscala);
-                        puntaje[2].setIcon(imagenFinal);
-                        dadosActivos.remove(dadito[dices]);
-                        dadosUtilizados.revalidate();
-                        dadosInactivos.revalidate();
-                        dadosActivos.revalidate();
-                        dadosUtilizados.repaint();
-                        dadosInactivos.repaint();
-                        dadosActivos.repaint();
-                        JOptionPane.showConfirmDialog(null, "La cara cambio a : "
-                                , "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
-                    }
-                    System.out.println("Sale 42");
+                    if(controlito.determinante == true) {
 
-
-                }
-                if (botonPresionadoSinPoder == 2) {
-                    controlito.metodo(botonPresionadoSinPoder);
-                    System.out.println("sale dragon");
-                }
-                if (exitoso == true && controlito.Estado(dadosEnelPanel) == 3 && dadosEnelPanel > 1) {
-                    if (e.getClickCount() == 2 && botonPresionado.getParent() == dadosActivos) {
                         int dices = -1;
-                        for (int i = 0; i < dadito.length; i++) {
-                            if (dadito[i] == e.getSource()) {
-                                dado = dadito[i].getActionCommand();
-                                dices = i;
+                        for (int j = 0; j < dadito.length; j++) {
+                            if (dadito[j] == e.getSource()) {
+                                dices = j;
                                 exitoso = false;
                                 break;
                             }
                         }
                         if (dices != -1 && exitoso == false) {
-                            //components = actualizar();
+                            ImageIcon imagen = new ImageIcon(getClass().getResource("/recursos/Cara-" + botonPresionadoSinPoder + ".png"));
+                            Image imageEscala = imagen.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                            ImageIcon imagenFinal = new ImageIcon(imageEscala);
+                            puntaje[2].setIcon(imagenFinal);
+                            dadosActivos.remove(dadito[dices]);
+                            dadosUtilizados.revalidate();
+                            dadosInactivos.revalidate();
+                            dadosActivos.revalidate();
+                            dadosUtilizados.repaint();
+                            dadosInactivos.repaint();
+                            dadosActivos.repaint();
+                            components = actualizar();
+                        }
+                        System.out.println("Sale 42");
+                    }
+                }
+                if (botonPresionadoSinPoder == 2) {
+                    controlito.metodo(botonPresionadoSinPoder);
+                    System.out.println("sale dragon");
+                    components = actualizar();
+                }
+                if (exitoso == true && controlito.Estado(dadosEnelPanel) == 3) {
+                    if (e.getClickCount() == 2 && botonPresionado.getParent() == dadosActivos) {
+                        int dices = -1;
+                        for (int i = 0; i < dadito.length; i++) {
+                            if (dadito[i] == e.getSource()) {
+                                dices = i;
+                                exitoso = false;
+
+                                break;
+                            }
+                        }
+
+                        if (dices != -1 && exitoso == false) {
                             int caraNueva = controlito.nuevo;
                             imagenDelDado(caraNueva, dices);
                             dadosUtilizados.revalidate();
@@ -263,8 +261,9 @@ public class ImagenDado {
                             dadosUtilizados.repaint();
                             dadosInactivos.repaint();
                             dadosActivos.repaint();
-                            JOptionPane.showConfirmDialog(null, "La cara cambio a : "
+                            respuesta=JOptionPane.showConfirmDialog(null, "La cara cambio a : "
                                     + modeloDado.getCaras(caraNueva), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
+                            components = actualizar();
 
                         }
 
@@ -284,7 +283,6 @@ public class ImagenDado {
                             }
                         }
                         if (dices != -1 && exitoso == false) {
-
                             dadosActivos.remove(dadito[dices]);
                             dadito[dices].setEnabled(false);
                             dadosInactivos.add(dadito[dices]);
@@ -295,7 +293,9 @@ public class ImagenDado {
                             dadosUtilizados.repaint();
                             dadosInactivos.repaint();
                             dadosActivos.repaint();
-                            JOptionPane.showConfirmDialog(null, "Se inactivo el dado: " + modeloDado.getCaras(Integer.parseInt(dado)), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
+                            respuesta=JOptionPane.showConfirmDialog(null,
+                                    "Se inactivo el dado: " + modeloDado.getCaras(Integer.parseInt(dado)),
+                                    "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                             components = actualizar();
                         }
                         System.out.println("sale nave");
@@ -314,7 +314,6 @@ public class ImagenDado {
                             }
                         }
                         if (dices != -1 && exitoso == false) {
-                            actualizar();
                             int caraOpuesta = modeloDado.caraOpuesta(Integer.parseInt(opuesto));
                             imagenDelDado(caraOpuesta, dices);
                             dadosUtilizados.revalidate();
@@ -323,7 +322,8 @@ public class ImagenDado {
                             dadosUtilizados.repaint();
                             dadosInactivos.repaint();
                             dadosActivos.repaint();
-                            JOptionPane.showConfirmDialog(null, "Cara opuesta del dado: " + modeloDado.getCaras(caraOpuesta), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
+                            respuesta=JOptionPane.showConfirmDialog(null, "Cara opuesta del dado: " + modeloDado.getCaras(caraOpuesta), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
+                            components = actualizar();
                         }
                         System.out.println("sale heroe");
                     }
@@ -339,13 +339,12 @@ public class ImagenDado {
 
                         }
                         if (dices != -1 && exitoso == false) {
-                            actualizar();
                             int nuevoDadoActivo = controlito.nuevo;
                             imagenDelDado(nuevoDadoActivo, dices);
                             dadosInactivos.remove(dadito[dices]);
                             dadito[dices].setEnabled(true);
                             dadosActivos.add(dadito[dices]);
-                            JOptionPane.showConfirmDialog(null, "El nuevo dado activo es: " + modeloDado.getCaras(nuevoDadoActivo), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
+                            respuesta=JOptionPane.showConfirmDialog(null, "El nuevo dado activo es: " + modeloDado.getCaras(nuevoDadoActivo), "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
                             dadosInactivos.revalidate();
                             dadosInactivos.repaint();
                             dadosActivos.revalidate();
@@ -357,10 +356,33 @@ public class ImagenDado {
 
                     }
                 }
+                if(respuesta == JOptionPane.OK_OPTION){
+                    try {
+
+                        ArrayList<String> etiquetas = new ArrayList<>();
+                        for (Component component : components) {
+                            if (component instanceof JButton) {
+                                JButton boton = (JButton) component;
+                                String etiqueta = boton.getActionCommand();
+                                etiquetas.add(etiqueta);
+                            }
+                        }
+                        etiquetasArray = etiquetas.toArray(new String[0]);
+                        dadosEnelPanel = components.length;
+                        System.out.println(Arrays.toString(etiquetasArray));
+                    }catch (NullPointerException E){
+                        JOptionPane.showConfirmDialog(null,
+                                "Usted no ha realizado ninguna jugada",
+                                "INFORMACIÓN", JOptionPane.CLOSED_OPTION);
+
+                    }
+                }
+
 
             } catch (NullPointerException ex) {
 
             }
+            components = actualizar();
             dadosInactivos.revalidate();
             dadosUtilizados.revalidate();
             dadosActivos.revalidate();
