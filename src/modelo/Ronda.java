@@ -28,10 +28,7 @@ public class Ronda {
     /*
     * Constructor de la clase
     */
-
     public Ronda(){}
-
-
 
     /*
     * Devuelve un valor que representa el numero maximo de veces que
@@ -50,25 +47,24 @@ public class Ronda {
     * Devuelve booleano que indica si la ronda ha llegado a su estado final o no.
     */
 
-    public boolean estadoFinal(int cantidades, int numero){
-        if(cantidades<1 && numero==1){
-
+    public boolean estadoFinal(int numero){
+        if(numero==1){
             num = numero;
             return true;
         }
-        if (cantidades == 1 && numero == 2) {
+        if (numero == 2) {
             num = numero;
             return true;
         }
-        if (cantidades == 1 && numero == 3) {
+        if (numero == 3) {
             num = numero;
             return true;
         }
-        if (cantidades == 1 && numero == 4) {
+        if (numero == 4) {
             num = numero;
             return true;
         }
-        if (cantidades == 1 && numero == 5) {
+        if (numero == 5) {
             num = numero;
             return true;
         } else {
@@ -76,6 +72,8 @@ public class Ronda {
             return false;
         }
     }
+
+
 
 
     /*
