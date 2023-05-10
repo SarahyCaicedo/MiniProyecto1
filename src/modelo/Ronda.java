@@ -10,14 +10,16 @@
 
 package modelo;
 
-import javax.swing.*;
+
 
 /*
  *INTENCION: Tiene como proposito modelar el estado y comportamiento de la ronda de juego
  */
 
+
 public class Ronda {
     public static int num = 1;
+
     public Ronda(int num) {
 
         this.num = num;
@@ -28,6 +30,7 @@ public class Ronda {
     */
 
     public Ronda(){}
+
 
 
     /*
@@ -49,21 +52,36 @@ public class Ronda {
 
     public boolean estadoFinal(int cantidades, int numero){
         if(cantidades<1 && numero==1){
+
             num = numero;
             return true;
-        }else{
-            if(cantidades<1 && numero==2){
-                num = numero;
-                return true;
-            }else{
-                return false;
-            }
+        }
+        if (cantidades == 1 && numero == 2) {
+            num = numero;
+            return true;
+        }
+        if (cantidades == 1 && numero == 3) {
+            num = numero;
+            return true;
+        }
+        if (cantidades == 1 && numero == 4) {
+            num = numero;
+            return true;
+        }
+        if (cantidades == 1 && numero == 5) {
+            num = numero;
+            return true;
+        } else {
+            System.out.println("Valida y no");
+            return false;
         }
     }
+
 
     /*
     * Devuelve el valor actual de la variable num
     */
+
 
     public int getNum() {
         return num;
