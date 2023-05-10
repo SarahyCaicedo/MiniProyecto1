@@ -27,6 +27,20 @@ public class Dado {
 
     }
 
+
+
+    /*
+    * Devuelve el numero de la cara del dado, exceoti si ha salido la cara 42
+    * cuyo caso devuelve el 42
+    */
+    public int caraSuma(int dado) {
+        if (1 == dado) {
+            dado = dado+0;
+        }
+        return dado;
+    }
+
+
     /*
     * Devuelve un numero aleatorio entre 1 y 6
     */
@@ -35,20 +49,13 @@ public class Dado {
         return (int) (Math.random() * 6) + 1;
     }
 
-    /*
-    * Dada la cara del dado que ha salido, devuelve el
-    * numero de la cara opuesta
-    */
 
-    public int caraOpuesta(int dado) {
-        int opuesto = 7 - dado;
-        return opuesto;
-    }
 
     /*
     * Devuelve un valor booleano que indica si ha salido la cara
     * dragon
     */
+
 
     public boolean dragon(int dado) {
         if (2 == dado) {
@@ -59,24 +66,15 @@ public class Dado {
         }
     }
 
-    /*
-    * Devuelve el numero de la cara del dado, exceoti si ha salido la cara 42
-    * cuyo caso devuelve el 42
-    */
 
 
-    public int caraSuma(int dado) {
-        if (1 == dado) {
-            dado = 42;
-        }
-        return dado;
-    }
 
     /*
     * Esta funcion devuelve un numero aleatorio, que representa el resultado
     * de volver a lanzar el dado, siempre y cuando haya salido la caara
     * meeple
     */
+
 
     public int meeple(int dado) {
         if (3 == dado) {
@@ -100,9 +98,11 @@ public class Dado {
 
     }
 
+
     /*
     * Devuelve el numero de la cara, solo si ha salido la cara heroe
     */
+
 
     public int heroe(int dado) {
         if (5 == dado) {
@@ -111,6 +111,16 @@ public class Dado {
             return 0;
         }
 
+    }
+
+
+    /*
+     * Dada la cara del dado que ha salido, devuelve el
+     * numero de la cara opuesta
+     */
+    public int caraOpuesta(int dado) {
+        int opuesto = 7 - dado;
+        return opuesto;
     }
 
     /*

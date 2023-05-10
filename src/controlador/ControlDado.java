@@ -22,7 +22,7 @@ public class ControlDado {
     private ImagenDado imagenDado;
 
     public static int lanzamientos, indice, nuevo, dados, cantidad;
-
+    public static boolean determinante = false;
     public static String[] caraPrincipal = new String[10];
 
     public static String[] caraOpuesta = new String[10];
@@ -84,6 +84,7 @@ public class ControlDado {
             dados = 1;
             nuevo = modeloDado.caraSuma(dado);
             imagenDado.mensaje(dado);
+            determinante = true;
             System.out.println("Dado suma: " + nuevo);
         }
         if (dado == 2) {
@@ -98,6 +99,7 @@ public class ControlDado {
             nuevo = modeloDado.meeple(dado);
             ImagenDado.exitoso = true;
             imagenDado.mensaje(dado);
+
 
             System.out.println("Dado nuevo: " + nuevo);
         }
@@ -140,42 +142,43 @@ public class ControlDado {
         if (dados == 1) {
             System.out.println("Entro al 42");
             dados = 1;
-            cantidad = cantidades - 1;
+            cantidad = cantidades;
             controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 2) {
             System.out.println("Entro al dragon");
             dados = 2;
-            cantidad = cantidades - 1;
+            cantidad = cantidades;
             controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 3) {
             System.out.println("Entro al meeple");
             dados = 3;
-            cantidad = cantidades - 1;
+            cantidad = cantidades;
             controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 4) {
             System.out.println("Entro a nave");
             dados = 4;
-            cantidad = cantidades - 1;
+            cantidad = cantidades;
+            System.out.println("Hay " + cantidad);
             controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 5) {
             System.out.println("Entro a heroe");
             dados = 5;
-            cantidad = cantidades - 1;
+            cantidad = cantidades;
             controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 6) {
             System.out.println("Entro a corazon");
             dados = 6;
-            cantidad = cantidades - 1;
+            cantidad = cantidades;
             controlRonda.validacion(cantidad, dados);
             return dados;
         } else {
