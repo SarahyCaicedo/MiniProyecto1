@@ -91,6 +91,7 @@ public class ControlDado {
             dados = 2;
             nuevo = modeloDado.corazon(dado);
             imagenDado.mensaje(dado);
+            determinante = true;
             System.out.println("Dado perdedor: " + nuevo);
         }
 
@@ -143,21 +144,18 @@ public class ControlDado {
             System.out.println("Entro al 42");
             dados = 1;
             cantidad = cantidades;
-            controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 2) {
             System.out.println("Entro al dragon");
             dados = 2;
             cantidad = cantidades;
-            controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 3) {
             System.out.println("Entro al meeple");
             dados = 3;
             cantidad = cantidades;
-            controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 4) {
@@ -165,21 +163,18 @@ public class ControlDado {
             dados = 4;
             cantidad = cantidades;
             System.out.println("Hay " + cantidad);
-            controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 5) {
             System.out.println("Entro a heroe");
             dados = 5;
             cantidad = cantidades;
-            controlRonda.validacion(cantidad, dados);
             return dados;
         }
         if (dados == 6) {
             System.out.println("Entro a corazon");
             dados = 6;
             cantidad = cantidades;
-            controlRonda.validacion(cantidad, dados);
             return dados;
         } else {
             return 0;
