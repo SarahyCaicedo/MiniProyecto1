@@ -33,7 +33,7 @@ public class GUI extends JFrame {
     private static Listener listener;
     public static JButton btnLanzarDado;
     private int conteo = 1, dado;
-
+:Q
 
     private ControlDado controlDado;
 
